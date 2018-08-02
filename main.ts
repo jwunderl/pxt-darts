@@ -12,9 +12,11 @@ class Dart {
     traceColor: number;
 
     constructor(img: Image,
-                kind: number,
-                x: number = 10,
-                y: number = scene.screenHeight() - 20) {
+            kind: number,
+            // x: number = 10,
+            // y: number = scene.screenHeight() - 20) {
+            x: number,
+            y: number) {
         this.dart = sprites.create(img, kind);
         this.dart.x = x;
         this.dart.y = y;
@@ -24,7 +26,7 @@ class Dart {
         this.angle = 10;
         this.iter = 3;
         this.bkgd = scene.backgroundImage();
-        
+
         this.controlKeys = false;
         this.trace = false;
         this.traceColor = 1;
@@ -39,7 +41,7 @@ class Dart {
                 let xComp = xComponent(__this.angle, __this.pow);
                 let yComp = yComponent(__this.angle, __this.pow);
 
-                for (let i: number = 0; i < __this.iter; i += ( i | 1) / 10) {
+                for (let i: number = 0; i < __this.iter; i += (i | 1) / 10) {
                     let x = __dart.x + i * xComp;
                     let y = __dart.y + i * yComp + i * i * __this.gravity / 2;
                     __this.bkgd.setPixel(x, y, 1);
@@ -62,6 +64,7 @@ class Dart {
 
     controlWithArrowKeys(on: boolean) {
         let __this: Dart = this;
+        this.controlKeys = on;
         game.onUpdate(function () {
             if (__this.controlKeys) {
                 __this.angle += controller.dx() / 5;
