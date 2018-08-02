@@ -1,20 +1,22 @@
 
 class Dart {
-    dart: Sprite;
-    angle: number;
-    pow: number;
-    iter: number;
-    gravity: number;
-    bkgd: Image;
+    public dart: Sprite;
+    private angle: number;
+    private pow: number;
+    private iter: number;
+    private gravity: number;
+    private bkgd: Image;
 
-    controlKeys: boolean;
-    trace: boolean;
-    traceColor: number;
+        // DEFAULT VALUES TO USE
+    // x: number = 10,
+    // y: number = scene.screenHeight() - 20) {
 
-    constructor(img: Image,
+    private controlKeys: boolean;
+    private trace: boolean;
+    private traceColor: number;
+
+    public constructor(img: Image,
             kind: number,
-            // x: number = 10,
-            // y: number = scene.screenHeight() - 20) {
             x: number,
             y: number) {
         this.dart = sprites.create(img, kind);
@@ -32,7 +34,7 @@ class Dart {
         this.traceColor = 1;
     }
 
-    setTrace(on: boolean) {
+    public setTrace(on: boolean) {
         let __dart: Sprite = this.dart;
         let __this: Dart = this;
         game.onUpdateInterval(50, function () {
@@ -50,19 +52,19 @@ class Dart {
         })
     }
 
-    throwDart() {
+    public throwDart() {
         this.dart.vx = this.pow * Math.cos(degreeToRadian(this.angle));
         this.dart.vy = this.pow * Math.sin(degreeToRadian(this.angle));
         this.dart.ay = this.gravity;
     }
 
-    stopDart() {
+    public stopDart() {
         this.dart.ay = 0;
         this.dart.vx = 0;
         this.dart.vy = 0;
     }
 
-    controlWithArrowKeys(on: boolean) {
+    public controlWithArrowKeys(on: boolean) {
         let __this: Dart = this;
         this.controlKeys = on;
         game.onUpdate(function () {
