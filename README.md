@@ -37,12 +37,8 @@ Dart.controlWithArrowKeys(boolean?): void
 * power: power to throw dart at
 * tracing time (seconds): how long in seconds to estimate movement
 * trace color: color of trace (if trace is set to on)
-* gravity: how much downward force to apply to dart
-
-
-## TODO
-
-- [ ] Maybe add 'wind' / acceleration in x direction
+* gravity: how much downward acceleration to apply to dart
+* wind: how much horizontal acceleration to apply to dart
 
 ## License
 
