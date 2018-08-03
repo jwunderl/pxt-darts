@@ -33,7 +33,7 @@ Dart.controlWithArrowKeys(boolean?): void
 > control direction and power of dart with arrow keys (or turn off if passed false)
 
 ### Dart Properties:
-* angle angle to throw dart at
+* angle: angle to throw dart at
 * power: power to throw dart at
 * tracing time (seconds): how long in seconds to estimate movement
 * trace color: color of trace (if trace is set to on)
