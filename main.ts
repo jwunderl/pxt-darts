@@ -91,7 +91,7 @@ class Dart {
         this.dart.ay = 0;
         this.dart.vx = 0;
         this.dart.vy = 0;
-    }
+    } 
 
     /**
      * Set whether to control the dart with the arrow keys; left and right
