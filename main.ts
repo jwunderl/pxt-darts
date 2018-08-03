@@ -51,6 +51,16 @@ namespace Darts {
         }
 
         /**
+         * Gets the dart's sprite
+         */
+        //% group="Properties"
+        //% blockId=dartSprite block="%dart(myDart) sprite"
+        //% weight=8
+        get sprite(): Sprite {
+            return this.dart;
+        }
+
+        /**
          * Set whether to show the trace for the estimated path
          * @param on whether to turn on or off this feature, eg: true
          */
