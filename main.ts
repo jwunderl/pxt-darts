@@ -1,24 +1,37 @@
+/**
+* Darts
+*/
+//% weight=100 color=#d2b48c icon="\uf1b0"
 
+/**
+ * A dart
+ **/
+//% blockNamespace=darts color="#6699CC" blockGap=8
 class Dart {
     public dart: Sprite;
-    private angle: number;
-    private pow: number;
-    private iter: number;
-    private gravity: number;
     private bkgd: Image;
 
-        // DEFAULT VALUES TO USE
-    // x: number = 10,
-    // y: number = scene.screenHeight() - 20) {
+    //% group="Properties" blockSetVariable="myDart"
+    //% blockCombine block="angle"
+    public angle: number;
+    //% group="Properties" blockSetVariable="myDart"
+    //% blockCombine block="power"
+    public pow: number;
+    //% group="Properties" blockSetVariable="myDart"
+    //% blockCombine block="tracing time (seconds)"
+    public iter: number;
+    //% group="Properties" blockSetVariable="myDart"
+    //% blockCombine block="gravity"
+    public gravity: number;
 
     private controlKeys: boolean;
     private trace: boolean;
     private traceColor: number;
 
     public constructor(img: Image,
-            kind: number,
-            x: number,
-            y: number) {
+                kind: number,
+                x: number,
+                y: number) {
         this.dart = sprites.create(img, kind);
         this.dart.x = x;
         this.dart.y = y;
@@ -34,7 +47,13 @@ class Dart {
         this.traceColor = 1;
     }
 
-    public setTrace(on: boolean) {
+    /**
+     * Set whether to show the trace for the estimated path
+     * @param on whether to turn on or off this feature, eg: true
+     */
+    //% blockId=controlKeys block="trace path estimate||%flag %on=toggleOnOff"
+    //% weight=7
+    public setTrace(on: boolean = true) {
         let __dart: Sprite = this.dart;
         let __this: Dart = this;
         game.onUpdateInterval(50, function () {
@@ -52,19 +71,36 @@ class Dart {
         })
     }
 
+    /**
+     * Throw the dart with the current settings
+     */
+    //% blockId=throwDart block="throw dart"
+    //% weight=7
     public throwDart() {
         this.dart.vx = this.pow * Math.cos(degreeToRadian(this.angle));
         this.dart.vy = this.pow * Math.sin(degreeToRadian(this.angle));
         this.dart.ay = this.gravity;
     }
 
+    /**
+     * Stop the dart at the current location
+     */
+    //% blockId=stopDart block="stop dart"
+    //% weight=7
     public stopDart() {
         this.dart.ay = 0;
         this.dart.vx = 0;
         this.dart.vy = 0;
     }
 
-    public controlWithArrowKeys(on: boolean) {
+    /**
+     * Set whether to control the dart with the arrow keys; left and right
+     * to adjust the angle, and up and down to increase / decrease power
+     * @param on whether to turn on or off this feature, eg: true
+     */
+    //% blockId=controlKeys block="control with arrow keys||%flag %on=toggleOnOff"
+    //% weight=7
+    public controlWithArrowKeys(on: boolean = true) {
         let __this: Dart = this;
         this.controlKeys = on;
         game.onUpdate(function () {
@@ -74,6 +110,19 @@ class Dart {
             }
         })
     }
+}
+
+/**
+ * Creates a new dart from an image and kind
+ * @param img the image
+ */
+//% blockId=spritescreate block="dart %img=screen_image_picker of kind %kind=spritetype||x %x y %y"
+//% blockSetVariable=myDart
+//% weight=100
+export function create(img: Image, kind: number, x?: number, y?: number): Dart {
+    const scene = game.currentScene();
+    let dart: Dart = new Dart(img, kind, x | 10, y | scene.screenHeight() - 20);
+    return dart
 }
 
 function degreeToRadian(degree: number): number {
