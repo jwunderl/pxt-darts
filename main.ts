@@ -9,7 +9,7 @@ namespace Darts {
      **/
     //% blockNamespace=Darts color="#6699CC" blockGap=8
     export class Dart {
-        public dart: Sprite;
+        private dart: Sprite;
         private bkgd: Image;
 
         //% group="Properties" blockSetVariable="myDart"
@@ -27,14 +27,17 @@ namespace Darts {
         //% group="Properties" blockSetVariable="myDart"
         //% blockCombine block="gravity"
         public gravity: number;
+        //% group="Properties" blockSetVariable="myDart"
+        //% blockCombine block="wind"
+        public wind: number;
 
         private controlKeys: boolean;
         private trace: boolean;
 
         public constructor(img: Image,
-                        kind: number,
-                        x: number,
-                        y: number) {
+                            kind: number,
+                            x: number,
+                            y: number) {
             this.dart = sprites.create(img, kind);
             this.dart.x = x;
             this.dart.y = y;
@@ -43,6 +46,7 @@ namespace Darts {
             this.pow = 50;
             this.angle = 10;
             this.iter = 3;
+            this.wind = 0;
             this.bkgd = scene.backgroundImage();
 
             this.controlKeys = false;
@@ -78,7 +82,7 @@ namespace Darts {
                     let yComp = Darts.yComponent(__this.angle, __this.pow);
 
                     for (let i: number = 0; i < __this.iter; i += (i | 1) / 10) {
-                        let x = __dart.x + i * xComp;
+                        let x = __dart.x + i * xComp + i * i * __this.wind / 2;
                         let y = __dart.y + i * yComp + i * i * __this.gravity / 2;
                         __this.bkgd.setPixel(x, y, __this.traceColor);
                     }
@@ -96,6 +100,7 @@ namespace Darts {
             this.dart.vx = this.pow * Math.cos(Darts.degreeToRadian(this.angle));
             this.dart.vy = this.pow * Math.sin(Darts.degreeToRadian(this.angle));
             this.dart.ay = this.gravity;
+            this.dart.ax = this.wind;
         }
 
         /**
@@ -106,6 +111,7 @@ namespace Darts {
         //% group="Action"
         public stopDart(): void {
             this.dart.ay = 0;
+            this.dart.ax = 0;
             this.dart.vx = 0;
             this.dart.vy = 0;
         }
@@ -129,7 +135,7 @@ namespace Darts {
             })
         }
     }
-    
+
     /**
      * Creates a new dart from an image and kind
      * @param img the image for the sprite
