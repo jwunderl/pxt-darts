@@ -117,7 +117,7 @@ namespace Darts {
      * Creates a new dart from an image and kind
      * @param img the image
      */
-    //% blockId=spritescreate block="dart %img=screen_image_picker of kind %kind=spritetype||x %x y %y"
+    //% blockId=dartsCreate block="dart %img=screen_image_picker of kind %kind=spritetype||x %x y %y"
     //% blockSetVariable=myDart
     //% weight=100
     export function create(img: Image, kind: number, x?: number, y?: number): Dart {
