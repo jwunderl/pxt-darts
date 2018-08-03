@@ -1,28 +1,46 @@
 # pxt-darts
 
-## Basic API
+## Darts namespace blocks:
+```ts
+create(Image, kind, x?, y?): Dart
+```
+> create a new dart with the given image / kind. Optionally pass inital x / y coordinates
 
 ```ts
-create(Image, kind)
-throw()
-setPower(number)
-setAngle(number)
-setTracingColor(color)
-setTrace(boolean)
-setGravity(number)
-setTraceLength(number)
-controlWithArrowKeys(boolean)
+Dart.throw(): void
 ```
+
+> throw the dart in the given direction
+
+```ts
+Dart.stop(): void
+```
+
+> stop the dart at it's current location
+
+```ts
+Dart.setTrace(boolean): void
+```
+
+> trace the 'estimated' path of the dart (or turn off if passed false)
+
+```ts
+Dart.controlWithArrowKeys(boolean?): void
+```
+
+> control direction and power of dart with arrow keys (or turn off if passed false)
+
+### Dart Properties:
+* angle angle to throw dart at
+* power: power to throw dart at
+* tracing time (seconds): how long in seconds to estimate movement
+* trace color: color of trace (if trace is set to on)
+* gravity: how much downward force to apply to dart
+
 
 ## TODO
 
-- [ ] Add a reference for your blocks here
-- [ ] Add "icon.png" image (300x200) in the root folder
-- [ ] Add "- beta" to the GitHub project description if you are still iterating it.
-- [ ] Use "pxt bump" to create a tagged release on GitHub
-- [ ] Get your package reviewed and approved https://arcade.makecode.com/packages/approval
-
-Read more at https://arcade.makecode.com/packages/build-your-own
+- [ ] Maybe add 'wind' / acceleration in x direction
 
 ## License
 
