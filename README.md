@@ -2,7 +2,7 @@
 
 ## Darts namespace blocks:
 ```ts
-create(Image, kind, x?, y?): Dart
+Darts.create(Image, kind, x?, y?): Darts.Dart
 ```
 > create a new dart with the given image / kind. Optionally pass inital x / y coordinates
 
@@ -43,8 +43,6 @@ Dart.controlWithArrowKeys(boolean?): void
 - [ ] Maybe add 'wind' / acceleration in x direction
 
 ## License
-
-
 
 ## Supported targets
 
