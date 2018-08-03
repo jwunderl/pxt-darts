@@ -2,6 +2,7 @@
 * Darts
 */
 //% weight=100 color=#6699CC icon="\uf140"
+//% groups='["Create", "Actions", "Properties"]'
 namespace Darts {
     /**
      * A dart
@@ -21,12 +22,14 @@ namespace Darts {
         //% blockCombine block="tracing time (seconds)"
         public iter: number;
         //% group="Properties" blockSetVariable="myDart"
+        //% blockCombine block="trace color"
+        public traceColor: number;
+        //% group="Properties" blockSetVariable="myDart"
         //% blockCombine block="gravity"
         public gravity: number;
 
         private controlKeys: boolean;
         private trace: boolean;
-        private traceColor: number;
 
         public constructor(img: Image,
                         kind: number,
@@ -53,19 +56,21 @@ namespace Darts {
          */
         //% blockId=setTrace block="trace %dart(myDart) path estimate||%flag %on=toggleOnOff"
         //% weight=7
+        //% group="Action"
         public setTrace(on: boolean = true) {
             let __dart: Sprite = this.dart;
             let __this: Dart = this;
+            this.trace = on;
             game.onUpdateInterval(50, function () {
                 __this.bkgd.fill(15);
-                if (!__dart.ay) {
+                if (!__dart.ay && __this.trace) {
                     let xComp = Darts.xComponent(__this.angle, __this.pow);
                     let yComp = Darts.yComponent(__this.angle, __this.pow);
 
                     for (let i: number = 0; i < __this.iter; i += (i | 1) / 10) {
                         let x = __dart.x + i * xComp;
                         let y = __dart.y + i * yComp + i * i * __this.gravity / 2;
-                        __this.bkgd.setPixel(x, y, 1);
+                        __this.bkgd.setPixel(x, y, __this.traceColor);
                     }
                 }
             })
@@ -76,6 +81,7 @@ namespace Darts {
          */
         //% blockId=throwDart block="throw %dart(myDart)"
         //% weight=7
+        //% group="Action"
         public throwDart() {
             this.dart.vx = this.pow * Math.cos(Darts.degreeToRadian(this.angle));
             this.dart.vy = this.pow * Math.sin(Darts.degreeToRadian(this.angle));
@@ -87,6 +93,7 @@ namespace Darts {
          */
         //% blockId=stopDart block="stop %dart(myDart)"
         //% weight=7
+        //% group="Action"
         public stopDart() {
             this.dart.ay = 0;
             this.dart.vx = 0;
@@ -100,6 +107,7 @@ namespace Darts {
          */
         //% blockId=controlKeys block="control %dart(myDart) with arrow keys||%flag %on=toggleOnOff"
         //% weight=7
+        //% group="Action"
         public controlWithArrowKeys(on: boolean = true) {
             let __this: Dart = this;
             this.controlKeys = on;
@@ -111,15 +119,25 @@ namespace Darts {
             })
         }
     }
+    
     /**
      * Creates a new dart from an image and kind
-     * @param img the image
+     * @param img the image for the sprite
+     * @param kind the kind to make the dart
+     * @param x optional initial x position, eg: 10
+     * @param y optional initial y position, eg: 110
      */
-    //% blockId=dartsCreate block="dart %img=screen_image_picker of kind %kind=spritetype at x %x y %y"
+    //% blockId=dartsCreate block="dart %img=screen_image_picker of kind %kind=spritetype || at x %x y %y"
+    //% expandableArgumentMode=toggle
+    //% inlineInputMode=inline
     //% blockSetVariable=myDart
     //% weight=100
-    export function create(img: Image, kind: number, x: number, y: number): Dart {
-        return new Dart(img, kind, x | 10, y | scene.screenHeight() - 20);
+    //% group="Create"
+    export function create(img: Image,
+                            kind: number,
+                            x: number = 10,
+                            y: number = 110): Dart {
+        return new Dart(img, kind, x, y);
     }
 
     export function degreeToRadian(degree: number): number {
