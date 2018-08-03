@@ -1,5 +1,7 @@
 # pxt-darts
 
+[Example Game](https://makecode.com/_UMqKAuRJoPkA)
+
 ## Darts namespace blocks:
 ```ts
 Darts.create(Image, kind, x?, y?): Darts.Dart
