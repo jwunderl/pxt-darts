@@ -4,7 +4,7 @@
 
 ## Darts namespace blocks:
 ```ts
-Darts.create(Image, kind, x?, y?): Darts.Dart
+Darts.create(Image, kind, x?, y?): Dart
 ```
 > create a new dart with the given image / kind. Optionally pass inital x / y coordinates
 
