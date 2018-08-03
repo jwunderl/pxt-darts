@@ -59,8 +59,8 @@ class Dart {
         game.onUpdateInterval(50, function () {
             __this.bkgd.fill(15);
             if (!__dart.ay) {
-                let xComp = xComponent(__this.angle, __this.pow);
-                let yComp = yComponent(__this.angle, __this.pow);
+                let xComp = Darts.xComponent(__this.angle, __this.pow);
+                let yComp = Darts.yComponent(__this.angle, __this.pow);
 
                 for (let i: number = 0; i < __this.iter; i += (i | 1) / 10) {
                     let x = __dart.x + i * xComp;
@@ -77,8 +77,8 @@ class Dart {
     //% blockId=throwDart block="throw dart"
     //% weight=7
     public throwDart() {
-        this.dart.vx = this.pow * Math.cos(degreeToRadian(this.angle));
-        this.dart.vy = this.pow * Math.sin(degreeToRadian(this.angle));
+        this.dart.vx = this.pow * Math.cos(Darts.degreeToRadian(this.angle));
+        this.dart.vy = this.pow * Math.sin(Darts.degreeToRadian(this.angle));
         this.dart.ay = this.gravity;
     }
 
@@ -112,27 +112,28 @@ class Dart {
     }
 }
 
-/**
- * Creates a new dart from an image and kind
- * @param img the image
- */
-//% blockId=spritescreate block="dart %img=screen_image_picker of kind %kind=spritetype||x %x y %y"
-//% blockSetVariable=myDart
-//% weight=100
-export function create(img: Image, kind: number, x?: number, y?: number): Dart {
-    const scene = game.currentScene();
-    let dart: Dart = new Dart(img, kind, x | 10, y | scene.screenHeight() - 20);
-    return dart
-}
+namespace Darts {
+    /**
+     * Creates a new dart from an image and kind
+     * @param img the image
+     */
+    //% blockId=spritescreate block="dart %img=screen_image_picker of kind %kind=spritetype||x %x y %y"
+    //% blockSetVariable=myDart
+    //% weight=100
+    export function create(img: Image, kind: number, x?: number, y?: number): Dart {
+        let dart: Dart = new Dart(img, kind, x | 10, y | scene.screenHeight() - 20);
+        return dart
+    }
 
-function degreeToRadian(degree: number): number {
-    return degree * Math.PI / 180;
-}
+    export function degreeToRadian(degree: number): number {
+        return degree * Math.PI / 180;
+    }
 
-function xComponent(degree: number, magnitude: number): number {
-    return magnitude * Math.cos(degreeToRadian(degree));
-}
+    export function xComponent(degree: number, magnitude: number): number {
+        return magnitude * Math.cos(degreeToRadian(degree));
+    }
 
-function yComponent(degree: number, magnitude: number): number {
-    return magnitude * Math.sin(degreeToRadian(degree));
+    export function yComponent(degree: number, magnitude: number): number {
+        return magnitude * Math.sin(degreeToRadian(degree));
+    }
 }
