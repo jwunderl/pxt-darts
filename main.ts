@@ -67,7 +67,7 @@ namespace Darts {
         //% blockId=setTrace block="trace %dart(myDart) path estimate||%flag %on=toggleOnOff"
         //% weight=7
         //% group="Action"
-        public setTrace(on: boolean = true) {
+        public setTrace(on: boolean = true): void {
             let __dart: Sprite = this.dart;
             let __this: Dart = this;
             this.trace = on;
@@ -92,7 +92,7 @@ namespace Darts {
         //% blockId=throwDart block="throw %dart(myDart)"
         //% weight=7
         //% group="Action"
-        public throwDart() {
+        public throwDart(): void {
             this.dart.vx = this.pow * Math.cos(Darts.degreeToRadian(this.angle));
             this.dart.vy = this.pow * Math.sin(Darts.degreeToRadian(this.angle));
             this.dart.ay = this.gravity;
@@ -104,7 +104,7 @@ namespace Darts {
         //% blockId=stopDart block="stop %dart(myDart)"
         //% weight=7
         //% group="Action"
-        public stopDart() {
+        public stopDart(): void {
             this.dart.ay = 0;
             this.dart.vx = 0;
             this.dart.vy = 0;
@@ -118,7 +118,7 @@ namespace Darts {
         //% blockId=controlKeys block="control %dart(myDart) with arrow keys||%flag %on=toggleOnOff"
         //% weight=7
         //% group="Action"
-        public controlWithArrowKeys(on: boolean = true) {
+        public controlWithArrowKeys(on: boolean = true): void {
             let __this: Dart = this;
             this.controlKeys = on;
             game.onUpdate(function () {
