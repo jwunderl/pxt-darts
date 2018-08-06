@@ -8,6 +8,7 @@ Darts.create(Image, kind, x?, y?): Dart
 ```
 > create a new dart with the given image / kind. Optionally pass inital x / y coordinates
 
+## Dart blocks:
 ```ts
 Dart.throw(): void
 ```
