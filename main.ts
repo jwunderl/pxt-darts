@@ -1,5 +1,5 @@
 /**
-* Darts
+* Darts with path 'estimation'
 */
 //% weight=100 color=#6699CC icon="\uf140"
 //% groups='["Create", "Actions", "Properties"]'
@@ -18,22 +18,39 @@ namespace Darts {
     //% weight=100
     //% group="Create"
     export function create(img: Image,
-                            kind: number,
-                            x: number = 10,
-                            y: number = 110): Dart {
+                    kind: number,
+                    x: number = 10,
+                    y: number = 110): Dart {
         return new Dart(img, kind, x, y);
     }
 
+    /**
+     * Convert degrees to radians
+     * @param degree to convert
+     * @return converted value in radians
+     */
     export function degreeToRadian(degree: number): number {
         return degree * Math.PI / 180;
     }
 
+    /**
+     * Evaluate the x component of a given vector
+     * @param degree angle of vector
+     * @param magnitude magnitude of vector
+     * @return x component of vector
+     */
     export function xComponent(degree: number, magnitude: number): number {
         return magnitude * Math.cos(degreeToRadian(degree));
     }
 
+    /**
+     * Evaluate the y component of a given vector
+     * @param degree angle of vector
+     * @param magnitude magnitude of vector
+     * @return y component of vector
+     */
     export function yComponent(degree: number, magnitude: number): number {
-        return magnitude * Math.sin(degreeToRadian(degree));
+        return -magnitude * Math.sin(degreeToRadian(degree));
     }
 }
 
@@ -44,6 +61,9 @@ namespace Darts {
 class Dart {
     private dart: Sprite;
     private bkgd: Image;
+
+    private controlKeys: boolean;
+    private trace: boolean;
 
     //% group="Properties" blockSetVariable="myDart"
     //% blockCombine block="angle"
@@ -64,13 +84,10 @@ class Dart {
     //% blockCombine block="wind"
     public wind: number;
 
-    private controlKeys: boolean;
-    private trace: boolean;
-
     public constructor(img: Image,
-        kind: number,
-        x: number,
-        y: number) {
+                        kind: number,
+                        x: number,
+                        y: number) {
         this.dart = sprites.create(img, kind);
         this.dart.x = x;
         this.dart.y = y;
@@ -105,18 +122,18 @@ class Dart {
     //% weight=7
     //% group="Action"
     public setTrace(on: boolean = true): void {
-        let __dart: Sprite = this.dart;
         let __this: Dart = this;
         this.trace = on;
+
         game.onUpdateInterval(50, function () {
             __this.bkgd.fill(15);
-            if (!__dart.ay && __this.trace) {
+            if (!__this.dart.ay && __this.trace) {
                 let xComp = Darts.xComponent(__this.angle, __this.pow);
                 let yComp = Darts.yComponent(__this.angle, __this.pow);
 
-                for (let i: number = 0; i < __this.iter; i += (i | 1) / 10) {
-                    let x = __dart.x + i * xComp + i * i * __this.wind / 2;
-                    let y = __dart.y + i * yComp + i * i * __this.gravity / 2;
+                for (let i: number = 0.1; i < __this.iter; i += i / 5) {
+                    let x = __this.dart.x + i * xComp + i * i * __this.wind / 2;
+                    let y = __this.dart.y + i * yComp + i * i * __this.gravity / 2;
                     __this.bkgd.setPixel(x, y, __this.traceColor);
                 }
             }
@@ -130,8 +147,8 @@ class Dart {
     //% weight=7
     //% group="Action"
     public throwDart(): void {
-        this.dart.vx = this.pow * Math.cos(Darts.degreeToRadian(this.angle));
-        this.dart.vy = this.pow * Math.sin(Darts.degreeToRadian(this.angle));
+        this.dart.vx = Darts.xComponent(this.angle, this.pow);
+        this.dart.vy = Darts.yComponent(this.angle, this.pow);
         this.dart.ay = this.gravity;
         this.dart.ax = this.wind;
     }
@@ -160,9 +177,10 @@ class Dart {
     public controlWithArrowKeys(on: boolean = true): void {
         let __this: Dart = this;
         this.controlKeys = on;
+
         game.onUpdate(function () {
             if (__this.controlKeys) {
-                __this.angle += controller.dx() / 5;
+                __this.angle -= controller.dx() / 5;
                 __this.pow -= controller.dy() / 5;
             }
         })
