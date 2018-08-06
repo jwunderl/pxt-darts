@@ -1,6 +1,6 @@
 # pxt-darts
 
-[Example Game](https://makecode.com/_UMqKAuRJoPkA)
+[Example Game](https://makecode.com/_LkbhDje340ce)
 
 ## Darts namespace blocks:
 ```ts
@@ -57,4 +57,3 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 * for PXT/arcade
 (The metadata above is needed for package search.)
-
