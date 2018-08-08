@@ -137,11 +137,14 @@ class Dart {
             if (!__this.dart.ay && __this.trace) {
                 let xComp = Darts.xComponent(__this.angle, __this.pow);
                 let yComp = Darts.yComponent(__this.angle, __this.pow);
+                let camera = game.currentScene().camera
+                let xOffset = camera.offsetX;
+                let yOffset = camera.offsetY;
 
                 for (let i: number = 0.1; i < __this.iter; i += i / 5) {
                     let x = __this.dart.x + i * xComp + i * i * __this.wind / 2;
                     let y = __this.dart.y + i * yComp + i * i * __this.gravity / 2;
-                    newBkgd.setPixel(x, y, __this.traceColor);
+                    newBkgd.setPixel(x - xOffset, y - yOffset, __this.traceColor);
                 }
             }
         })
