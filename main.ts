@@ -89,6 +89,14 @@ class Dart {
     //% blockCombine block="wind"
     //% weight=8
     public wind: number;
+    //% group="Properties" blockSetVariable="myDart"
+    //% blockCombine block="angle adjust rate"
+    //% weight=8
+    public angleRate: number;
+    //% group="Properties" blockSetVariable="myDart"
+    //% blockCombine block="wind"
+    //% weight=8
+    public powerRate: number;
 
     public constructor(img: Image,
         kind: number,
@@ -101,6 +109,8 @@ class Dart {
         this.gravity = 20;
         this.pow = 50;
         this.angle = 10;
+        this.angleRate = 1;
+        this.powerRate = 1;
         this.iter = 3;
         this.wind = 0;
         this.bkgd = scene.backgroundImage();
@@ -190,8 +200,8 @@ class Dart {
 
         game.onUpdate(function () {
             if (__this.controlKeys) {
-                __this.angle -= controller.dx() / 5;
-                __this.pow -= controller.dy() / 5;
+                __this.angle -= controller.dx() * __this.angleRate / 5;
+                __this.pow -= controller.dy() * __this.powerRate / 5;
             }
         })
     }

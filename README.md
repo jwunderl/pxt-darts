@@ -48,6 +48,8 @@ Dart.updateBackground(img: Image): void
 * trace color: color of trace (if trace is set to on)
 * gravity: how much downward acceleration to apply to dart
 * wind: how much horizontal acceleration to apply to dart
+* angle rate: rate at which angle should change when controlling dart relative to normal rate (i.e. a rate of 2 will make it change twice as fast)
+* power rate: rate at which power should change when controlling dart relative to normal rate (i.e. a rate of 2 will make it change twice as fast)
 
 ## License
 
