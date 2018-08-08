@@ -2,6 +2,8 @@
 
 [Example Game](https://makecode.com/_LkbhDje340ce)
 
+Note: darts take control over the background image when tracing paths; this means that changing the image using scene category will not function properly. See `updateBackground`.
+
 ## Darts namespace blocks:
 ```ts
 Darts.create(Image, kind, x?, y?): Dart
@@ -32,6 +34,12 @@ Dart.controlWithArrowKeys(boolean?): void
 ```
 
 > control direction and power of dart with arrow keys (or turn off if passed false)
+
+```ts
+Dart.updateBackground(img: Image): void
+```
+
+> set background image for dart to trace on
 
 ### Dart Properties:
 * angle: angle to throw dart at

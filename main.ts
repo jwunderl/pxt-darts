@@ -18,9 +18,9 @@ namespace Darts {
     //% weight=100
     //% group="Create"
     export function create(img: Image,
-                    kind: number,
-                    x: number = 10,
-                    y: number = 110): Dart {
+        kind: number,
+        x: number = 10,
+        y: number = 110): Dart {
         return new Dart(img, kind, x, y);
     }
 
@@ -67,27 +67,33 @@ class Dart {
 
     //% group="Properties" blockSetVariable="myDart"
     //% blockCombine block="angle"
+    //% weight=8
     public angle: number;
     //% group="Properties" blockSetVariable="myDart"
     //% blockCombine block="power"
+    //% weight=8
     public pow: number;
     //% group="Properties" blockSetVariable="myDart"
     //% blockCombine block="tracing time (seconds)"
+    //% weight=8
     public iter: number;
     //% group="Properties" blockSetVariable="myDart"
     //% blockCombine block="trace color"
+    //% weight=8
     public traceColor: number;
     //% group="Properties" blockSetVariable="myDart"
     //% blockCombine block="gravity"
+    //% weight=8
     public gravity: number;
     //% group="Properties" blockSetVariable="myDart"
     //% blockCombine block="wind"
+    //% weight=8
     public wind: number;
 
     public constructor(img: Image,
-                        kind: number,
-                        x: number,
-                        y: number) {
+        kind: number,
+        x: number,
+        y: number) {
         this.dart = sprites.create(img, kind);
         this.dart.x = x;
         this.dart.y = y;
@@ -119,8 +125,8 @@ class Dart {
      * @param on whether to turn on or off this feature, eg: true
      */
     //% blockId=setTrace block="trace %dart(myDart) path estimate||%flag %on=toggleOnOff"
-    //% weight=7
-    //% group="Action"
+    //% weight=50
+    //% group="Actions"
     public setTrace(on: boolean = true): void {
         let __this: Dart = this;
         this.trace = on;
@@ -145,8 +151,8 @@ class Dart {
      * Throw the dart with the current settings
      */
     //% blockId=throwDart block="throw %dart(myDart)"
-    //% weight=7
-    //% group="Action"
+    //% weight=50
+    //% group="Actions"
     public throwDart(): void {
         this.dart.vx = Darts.xComponent(this.angle, this.pow);
         this.dart.vy = Darts.yComponent(this.angle, this.pow);
@@ -158,8 +164,8 @@ class Dart {
      * Stop the dart at the current location
      */
     //% blockId=stopDart block="stop %dart(myDart)"
-    //% weight=7
-    //% group="Action"
+    //% weight=50
+    //% group="Actions"
     public stopDart(): void {
         this.dart.ay = 0;
         this.dart.ax = 0;
@@ -173,8 +179,8 @@ class Dart {
      * @param on whether to turn on or off this feature, eg: true
      */
     //% blockId=controlKeys block="control %dart(myDart) with arrow keys||%flag %on=toggleOnOff"
-    //% weight=7
-    //% group="Action"
+    //% weight=50
+    //% group="Actions"
     public controlWithArrowKeys(on: boolean = true): void {
         let __this: Dart = this;
         this.controlKeys = on;
@@ -186,4 +192,15 @@ class Dart {
             }
         })
     }
+
+    /**
+     * Update background image to new image so dart can continue to trace
+     */
+    //% blockId=updateBackground block="change %dart(myDart) background to image %img=background_image_picker"
+    //% weight=15
+    //% group="Properties"
+    public updateBackground(img: Image): void {
+        this.bkgd = img;
+    }
+
 }
