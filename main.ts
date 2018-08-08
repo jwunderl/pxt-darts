@@ -126,7 +126,8 @@ class Dart {
         this.trace = on;
 
         game.onUpdateInterval(50, function () {
-            __this.bkgd.fill(15);
+            let newBkgd: Image = __this.bkgd.clone();
+            scene.setBackgroundImage(newBkgd);
             if (!__this.dart.ay && __this.trace) {
                 let xComp = Darts.xComponent(__this.angle, __this.pow);
                 let yComp = Darts.yComponent(__this.angle, __this.pow);
@@ -134,7 +135,7 @@ class Dart {
                 for (let i: number = 0.1; i < __this.iter; i += i / 5) {
                     let x = __this.dart.x + i * xComp + i * i * __this.wind / 2;
                     let y = __this.dart.y + i * yComp + i * i * __this.gravity / 2;
-                    __this.bkgd.setPixel(x, y, __this.traceColor);
+                    newBkgd.setPixel(x, y, __this.traceColor);
                 }
             }
         })
