@@ -1,6 +1,8 @@
 # pxt-darts
 
-[Example Game](https://makecode.com/_LkbhDje340ce)
+* [Simple Example Game](https://makecode.com/_LkbhDje340ce)
+* [Baseball Game](https://makecode.com/_HPp8623cxM8d)
+
 
 Note: darts take control over the background image when tracing paths; this means that changing the image using scene category will not function properly. See `updateBackground`.
 

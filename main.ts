@@ -134,7 +134,7 @@ class Dart {
      * Set whether to show the trace for the estimated path
      * @param on whether to turn on or off this feature, eg: true
      */
-    //% blockId=setTrace block="trace %dart(myDart) path estimate||%flag %on=toggleOnOff"
+    //% blockId=setTrace block="trace %dart(myDart) path estimate || %on=toggleOnOff"
     //% weight=50
     //% group="Actions"
     public setTrace(on: boolean = true): void {
@@ -191,7 +191,7 @@ class Dart {
      * to adjust the angle, and up and down to increase / decrease power
      * @param on whether to turn on or off this feature, eg: true
      */
-    //% blockId=controlKeys block="control %dart(myDart) with arrow keys||%flag %on=toggleOnOff"
+    //% blockId=controlKeys block="control %dart(myDart) with arrow keys || %on=toggleOnOff"
     //% weight=50
     //% group="Actions"
     public controlWithArrowKeys(on: boolean = true): void {
