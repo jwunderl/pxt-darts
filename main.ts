@@ -18,9 +18,9 @@ namespace Darts {
     //% weight=100
     //% group="Create"
     export function create(img: Image,
-        kind: number,
-        x: number = 10,
-        y: number = 110): Dart {
+            kind: number,
+            x: number = 10,
+            y: number = 110): Dart {
         return new Dart(img, kind, x, y);
     }
 
@@ -99,9 +99,9 @@ class Dart {
     public powerRate: number;
 
     public constructor(img: Image,
-        kind: number,
-        x: number,
-        y: number) {
+            kind: number,
+            x: number,
+            y: number) {
         this.dart = sprites.create(img, kind);
         this.dart.x = x;
         this.dart.y = y;
@@ -215,5 +215,4 @@ class Dart {
     public updateBackground(img: Image): void {
         this.bkgd = img;
     }
-
 }
