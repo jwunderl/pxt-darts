@@ -1,14 +1,14 @@
 # pxt-darts
 
-* [Simple Example Game](https://makecode.com/_LkbhDje340ce)
-* [Baseball Game](https://makecode.com/_0od2Ug7jVadR)
+* [Simple Example Game](https://makecode.com/_3PeFj8ceTch4)
+* [Baseball Game](https://makecode.com/_b8HJCragee2t)
 
 
 Note: darts take control over the background image when tracing paths; this means that changing the image using scene category will not function properly. See `updateBackground`.
 
 ## Darts namespace blocks:
 ```ts
-Darts.create(Image, kind, x?, y?): Dart
+darts.create(Image, kind, x?, y?): Dart
 ```
 > create a new dart with the given image / kind. Optionally pass inital x / y coordinates
 
