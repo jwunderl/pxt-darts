@@ -1,5 +1,7 @@
 # pxt-darts
 
+A slightly editted version of this has been transferred to be a built in library in [Arcade](https://github.com/microsoft/pxt-arcade).
+
 * [Simple Example Game](https://makecode.com/_3PeFj8ceTch4)
 * [Baseball Game](https://makecode.com/_b8HJCragee2t)
 
